@@ -1,16 +1,9 @@
 import gptw from "@/assets/geveo_GPTW_new_300.png";
 import { Award } from "lucide-react";
 
-const METRICS = [
-  { k: "120+", v: "Projects Delivered" },
-  { k: "15+", v: "Industries Served" },
-  { k: "12+", v: "Countries Reached" },
-  { k: "98%", v: "Client Satisfaction" },
-];
-
 export function TrustRecognition() {
   return (
-    <section id="trust" className="py-24 md:py-28">
+    <section id="trust" className="py-5 md:py-28 bg-secondary/50" >
       <div className="container-x">
         <div className="relative overflow-hidden rounded-3xl border border-border p-8 md:p-12"
           style={{
@@ -31,20 +24,9 @@ export function TrustRecognition() {
               </h2>
               <p className="mt-4 text-muted-foreground text-pretty max-w-xl">
                 Proudly recognized as a <strong className="text-foreground">Great Place To Work</strong>,
-                reflecting our commitment to innovation, collaboration, and excellence —
+                reflecting our commitment to innovation, collaboration, and excellence
                 delivered across enterprises, startups and Web3 ecosystems worldwide.
               </p>
-
-              <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-6">
-                {METRICS.map((m) => (
-                  <div key={m.v}>
-                    <div className="font-display text-3xl tracking-[-0.02em] font-semibold text-foreground">
-                      {m.k}
-                    </div>
-                    <div className="mt-1 text-xs text-muted-foreground">{m.v}</div>
-                  </div>
-                ))}
-              </div>
             </div>
 
             <div className="lg:col-span-5">

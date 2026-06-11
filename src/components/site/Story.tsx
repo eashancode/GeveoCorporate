@@ -1,3 +1,5 @@
+import { Link } from "@tanstack/react-router";
+
 const milestones = [
   { y: "2008", t: "Founded in Colombo", d: "Geveo is established with a vision to deliver world-class digital engineering from Sri Lanka." },
   { y: "2013", t: "First enterprise partnerships", d: "Long-term engagements with global clients shape our delivery model and engineering culture." },
@@ -8,11 +10,11 @@ const milestones = [
 
 const values = [
   { t: "Collaboration", d: "We build with our clients, not for them. Shared problems, shared wins." },
-  { t: "Innovation with purpose", d: "We pursue new ideas where they create real value — not for the sake of novelty." },
+  { t: "Innovation with purpose", d: "We pursue new ideas where they create real value not for the sake of novelty." },
   { t: "Ownership", d: "We take responsibility for outcomes, not just deliverables." },
-  { t: "Continuous learning", d: "Our craft evolves constantly. So do we — as engineers and as a team." },
+  { t: "Continuous learning", d: "Our craft evolves constantly. So do we as engineers and as a team." },
   { t: "Customer success", d: "Our success is defined by the success of the people we work with." },
-  { t: "Integrity", d: "Direct, honest, dependable — in code, in conversation, in commitments." },
+  { t: "Integrity", d: "Direct, honest, dependable in code, in conversation, in commitments." },
 ];
 
 export function Story() {
@@ -20,17 +22,26 @@ export function Story() {
     <section id="company" className="py-24 md:py-32 bg-surface border-y border-border">
       <div className="container-x">
         <div className="grid lg:grid-cols-12 gap-12">
-          <div className="lg:col-span-5">
+          <div className="lg:col-span-7">
             <div className="eyebrow">Our story</div>
             <h2 className="mt-3 font-display text-4xl md:text-5xl tracking-[-0.03em] text-balance font-semibold">
               Seventeen years of engineering software that creates lasting value.
             </h2>
-            <p className="mt-6 text-muted-foreground text-pretty">
+            <p className="mt-6 text-muted-foreground text-pretty mb-7">
               Geveo was founded in 2008 by engineers and designers who believed
-              software delivery could be done differently — more thoughtful,
+              software delivery could be done differently more thoughtful,
               more honest, more outcomes-driven. That belief has shaped every
               client, every product and every team we have built since.
             </p>
+                      <Link
+                        to="/about"
+                        className="inline-flex items-center gap-2 rounded-full bg-primary text-primary-foreground pl-5 pr-2 py-2 text-sm font-medium shadow-green hover:opacity-95 transition group"
+                      >
+                        Find out more
+                        <span className="grid h-7 w-7 place-items-center rounded-full bg-primary-foreground/15 group-hover:translate-x-0.5 transition-transform">→</span>
+                      </Link>
+          </div>
+          <div className="lg:col-span-5">
             <div className="mt-8 rounded-2xl overflow-hidden border border-border shadow-card">
               <img
                 src={new URL("../../assets/team-office.jpg", import.meta.url).href}
@@ -39,18 +50,6 @@ export function Story() {
                 className="w-full h-full object-cover aspect-[5/4]"
               />
             </div>
-          </div>
-          <div className="lg:col-span-7">
-            <ol className="relative border-l border-border ml-2">
-              {milestones.map((m) => (
-                <li key={m.y} className="pl-8 pb-10 relative">
-                  <span className="absolute -left-[7px] top-1 h-3 w-3 rounded-full bg-primary ring-4 ring-surface" />
-                  <div className="font-mono text-[10px] tracking-[0.18em] uppercase text-muted-foreground">{m.y}</div>
-                  <div className="mt-1 font-display text-2xl tracking-[-0.02em] font-semibold">{m.t}</div>
-                  <p className="mt-2 text-sm text-muted-foreground text-pretty max-w-lg">{m.d}</p>
-                </li>
-              ))}
-            </ol>
           </div>
         </div>
 

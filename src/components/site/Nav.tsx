@@ -5,6 +5,7 @@ import logo from "@/assets/geveo-logo.svg";
 const links = [
   { to: "/about", label: "About Us" },
   { to: "/solutions", label: "Solutions" },
+  { to: "/evernode", label: "Evernode" },
   { to: "/case-studies", label: "Case Studies" },
   { href: "/#careers", label: "Careers" },
   { href: "/#contact", label: "Contact" },

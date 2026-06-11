@@ -10,15 +10,22 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SolutionsRouteImport } from './routes/solutions'
+import { Route as EvernodeRouteImport } from './routes/evernode'
 import { Route as CaseStudiesRouteImport } from './routes/case-studies'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CaseStudiesSlugRouteImport } from './routes/case-studies.$slug'
+import { Route as ApiContactRouteImport } from './routes/api/contact'
 import { Route as ApiAskRouteImport } from './routes/api/ask'
 
 const SolutionsRoute = SolutionsRouteImport.update({
   id: '/solutions',
   path: '/solutions',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EvernodeRoute = EvernodeRouteImport.update({
+  id: '/evernode',
+  path: '/evernode',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CaseStudiesRoute = CaseStudiesRouteImport.update({
@@ -41,6 +48,11 @@ const CaseStudiesSlugRoute = CaseStudiesSlugRouteImport.update({
   path: '/$slug',
   getParentRoute: () => CaseStudiesRoute,
 } as any)
+const ApiContactRoute = ApiContactRouteImport.update({
+  id: '/api/contact',
+  path: '/api/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiAskRoute = ApiAskRouteImport.update({
   id: '/api/ask',
   path: '/api/ask',
@@ -51,16 +63,20 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/case-studies': typeof CaseStudiesRouteWithChildren
+  '/evernode': typeof EvernodeRoute
   '/solutions': typeof SolutionsRoute
   '/api/ask': typeof ApiAskRoute
+  '/api/contact': typeof ApiContactRoute
   '/case-studies/$slug': typeof CaseStudiesSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/case-studies': typeof CaseStudiesRouteWithChildren
+  '/evernode': typeof EvernodeRoute
   '/solutions': typeof SolutionsRoute
   '/api/ask': typeof ApiAskRoute
+  '/api/contact': typeof ApiContactRoute
   '/case-studies/$slug': typeof CaseStudiesSlugRoute
 }
 export interface FileRoutesById {
@@ -68,8 +84,10 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/case-studies': typeof CaseStudiesRouteWithChildren
+  '/evernode': typeof EvernodeRoute
   '/solutions': typeof SolutionsRoute
   '/api/ask': typeof ApiAskRoute
+  '/api/contact': typeof ApiContactRoute
   '/case-studies/$slug': typeof CaseStudiesSlugRoute
 }
 export interface FileRouteTypes {
@@ -78,24 +96,30 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/case-studies'
+    | '/evernode'
     | '/solutions'
     | '/api/ask'
+    | '/api/contact'
     | '/case-studies/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
     | '/case-studies'
+    | '/evernode'
     | '/solutions'
     | '/api/ask'
+    | '/api/contact'
     | '/case-studies/$slug'
   id:
     | '__root__'
     | '/'
     | '/about'
     | '/case-studies'
+    | '/evernode'
     | '/solutions'
     | '/api/ask'
+    | '/api/contact'
     | '/case-studies/$slug'
   fileRoutesById: FileRoutesById
 }
@@ -103,8 +127,10 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   CaseStudiesRoute: typeof CaseStudiesRouteWithChildren
+  EvernodeRoute: typeof EvernodeRoute
   SolutionsRoute: typeof SolutionsRoute
   ApiAskRoute: typeof ApiAskRoute
+  ApiContactRoute: typeof ApiContactRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -114,6 +140,13 @@ declare module '@tanstack/react-router' {
       path: '/solutions'
       fullPath: '/solutions'
       preLoaderRoute: typeof SolutionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/evernode': {
+      id: '/evernode'
+      path: '/evernode'
+      fullPath: '/evernode'
+      preLoaderRoute: typeof EvernodeRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/case-studies': {
@@ -144,6 +177,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CaseStudiesSlugRouteImport
       parentRoute: typeof CaseStudiesRoute
     }
+    '/api/contact': {
+      id: '/api/contact'
+      path: '/api/contact'
+      fullPath: '/api/contact'
+      preLoaderRoute: typeof ApiContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/ask': {
       id: '/api/ask'
       path: '/api/ask'
@@ -170,8 +210,10 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   CaseStudiesRoute: CaseStudiesRouteWithChildren,
+  EvernodeRoute: EvernodeRoute,
   SolutionsRoute: SolutionsRoute,
   ApiAskRoute: ApiAskRoute,
+  ApiContactRoute: ApiContactRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

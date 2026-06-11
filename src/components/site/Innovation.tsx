@@ -1,4 +1,5 @@
 import { NetworkLines } from "./TechBackdrop";
+import teamWhiteboard from "@/assets/team-whiteboard.jpg";
 
 export function Innovation() {
   return (
@@ -40,7 +41,7 @@ export function Innovation() {
           <div className="lg:col-span-5">
             <div className="relative rounded-2xl overflow-hidden border border-background/10 shadow-elev">
               <img
-                src={new URL("../../assets/team-whiteboard.jpg", import.meta.url).href}
+                src={teamWhiteboard}
                 alt="Geveo engineers architecting a specialised platform"
                 loading="lazy"
                 className="w-full h-full object-cover aspect-[4/5]"

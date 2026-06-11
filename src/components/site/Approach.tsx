@@ -1,8 +1,8 @@
 const principles = [
   { n: "01", t: "Partnership over transactions", d: "We invest in long-term relationships. Most of our clients have worked with us for 5+ years." },
-  { n: "02", t: "Strategy-first thinking", d: "Every line of code is connected to a business outcome — agreed, measurable and visible." },
-  { n: "03", t: "Agile, disciplined delivery", d: "Iterative execution with the rigour of senior engineering — predictable cadence, transparent progress." },
-  { n: "04", t: "Engineered to scale", d: "We design platforms that grow gracefully — observable, secure and ready for what's next." },
+  { n: "02", t: "Strategy-first thinking", d: "Every line of code is connected to a business outcome agreed, measurable and visible." },
+  { n: "03", t: "Agile, disciplined delivery", d: "Iterative execution with the rigour of senior engineering predictable cadence, transparent progress." },
+  { n: "04", t: "Engineered to scale", d: "We design platforms that grow gracefully observable, secure and ready for what's next." },
 ];
 
 const phases = [
@@ -26,7 +26,7 @@ export function Approach() {
               <span className="text-muted-foreground">Real outcomes.</span>
             </h2>
             <p className="mt-6 text-muted-foreground max-w-md text-pretty">
-              We don't just deliver projects — we become an extension of your
+              We don't just deliver projects we become an extension of your
               team. Our approach blends strategic clarity, modern engineering
               and a genuine commitment to the outcomes you care about.
             </p>
@@ -62,7 +62,7 @@ export function Approach() {
               <span className="h-px w-16 bg-foreground/15" />
             </div>
             <p className="mt-5 mx-auto max-w-xl text-muted-foreground text-pretty">
-              A clear, proven path from idea to impact — structured, transparent
+              A clear, proven path from idea to impact structured, transparent
               and built around the outcomes you care about.
             </p>
           </div>

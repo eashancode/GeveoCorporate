@@ -192,7 +192,7 @@ function SolHero() {
           Digital Solutions Designed Around Your Business Goals
         </h1>
         <p className="mt-5 max-w-2xl mx-auto text-lg text-muted-foreground text-pretty">
-          Custom software, enterprise platforms, and digital transformation solutions —
+          Custom software, enterprise platforms, and digital transformation solutions 
           engineered by senior teams that ship outcomes, not just code.
         </p>
         <div className="mt-8 flex flex-wrap justify-center gap-3">

@@ -6,7 +6,7 @@ import { Solutions } from "@/components/site/Solutions";
 import { Challenges } from "@/components/site/Challenges";
 import { Approach } from "@/components/site/Approach";
 import { TechStack } from "@/components/site/TechStack";
-import { Impact } from "@/components/site/Impact";
+// import { Impact } from "@/components/site/Impact";
 import { CaseStudies } from "@/components/site/CaseStudies";
 import { TrustRecognition } from "@/components/site/TrustRecognition";
 import { Testimonials } from "@/components/site/Testimonials";
@@ -48,7 +48,7 @@ function Index() {
         <Challenges />
         <Approach />
         <TechStack />
-        <Impact />
+        {/* <Impact /> */}
         <CaseStudies />
         <Testimonials />
         <TrustRecognition />

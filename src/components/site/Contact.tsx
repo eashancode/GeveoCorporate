@@ -1,3 +1,7 @@
+"use client";
+
+import { useRef, useState } from "react";
+
 const offices = [
   {
     city: "Australian Office",
@@ -16,6 +20,49 @@ const offices = [
 ];
 
 export function Contact() {
+  const formRef = useRef<HTMLFormElement>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
+  const [errorMsg, setErrorMsg] = useState("");
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setStatus("idle");
+    setErrorMsg("");
+
+    try {
+      const formData = new FormData(formRef.current!);
+      const name = formData.get("name") as string;
+      const email = formData.get("email") as string;
+      const company = formData.get("company") as string;
+      const message = formData.get("message") as string;
+
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, company, message }),
+      });
+
+      const data = (await response.json()) as { success?: boolean; error?: string };
+
+      if (!response.ok || !data.success) {
+        setStatus("error");
+        setErrorMsg(data.error || "Failed to submit form");
+        return;
+      }
+
+      setStatus("success");
+      formRef.current?.reset();
+      setTimeout(() => setStatus("idle"), 5000);
+    } catch (error) {
+      setStatus("error");
+      setErrorMsg("Network error. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <section id="contact" className="py-24 md:py-32">
       <div className="container-x">
@@ -59,38 +106,38 @@ export function Contact() {
               Talk to a real engineer.
             </h3>
             <p className="mt-5 text-muted-foreground text-pretty">
-              Share what you're working on. A senior member of our team will
-              get back to you within one business day — no sales script, just
-              a straight conversation.
+              Ready to build something exceptional? Share your requirements with us, and our team will connect you with an experienced engineer to explore your goals, evaluate options, and define a clear path forward.
             </p>
-
-            <dl className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-6">
-              {[
-                ["Avg. response", "< 1 business day"],
-                ["Client retention", "5+ years average"],
-                ["Typical start", "2–3 weeks"],
-              ].map(([k, v]) => (
-                <div key={k}>
-                  <dt className="font-mono text-[10px] tracking-[0.18em] uppercase text-muted-foreground">{k}</dt>
-                  <dd className="mt-2 font-display text-xl">{v}</dd>
-                </div>
-              ))}
-            </dl>
           </div>
 
-          <form className="lg:col-span-7 rounded-2xl border border-border bg-card p-6 md:p-8 space-y-4">
+          <form
+            ref={formRef}
+            onSubmit={handleSubmit}
+            className="lg:col-span-7 rounded-2xl border border-border bg-card p-6 md:p-8 space-y-4"
+          >
             <div className="grid sm:grid-cols-2 gap-4">
-              <Field label="Name" name="name" />
-              <Field label="Email" name="email" type="email" />
+              <Field label="Name" name="name" required />
+              <Field label="Email" name="email" type="email" required />
             </div>
-            <Field label="Company" name="company" />
-            <Field label="How can we help?" name="message" multiline />
+            <Field label="Company" name="company" required />
+            <Field label="How can we help?" name="message" multiline required />
             <button
-              type="button"
-              className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-foreground text-background px-6 py-3 text-sm font-medium hover:bg-primary hover:text-primary-foreground transition-colors"
+              type="submit"
+              disabled={isSubmitting}
+              className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-foreground text-background px-6 py-3 text-sm font-medium hover:bg-primary hover:text-primary-foreground transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              Request a consultation <span>→</span>
+              {isSubmitting ? "Sending..." : "Request a consultation"} <span>→</span>
             </button>
+            {status === "success" && (
+              <div className="mt-3 p-3 rounded-lg bg-green-50 text-green-700 text-sm">
+                ✓ Thank you! We'll get back to you within 1 business day.
+              </div>
+            )}
+            {status === "error" && (
+              <div className="mt-3 p-3 rounded-lg bg-red-50 text-red-700 text-sm">
+                ✗ {errorMsg}
+              </div>
+            )}
           </form>
         </div>
 
@@ -118,22 +165,27 @@ function Field({
   name,
   type = "text",
   multiline = false,
+  required = false,
 }: {
   label: string;
   name: string;
   type?: string;
   multiline?: boolean;
+  required?: boolean;
 }) {
   const base =
     "w-full rounded-lg border border-border bg-background px-4 py-3 text-sm focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/15 transition";
   return (
     <label className="block">
-      <span className="font-mono text-[10px] tracking-[0.18em] uppercase text-muted-foreground">{label}</span>
+      <span className="font-mono text-[10px] tracking-[0.18em] uppercase text-muted-foreground">
+        {label}
+        {required && <span className="text-red-500 ml-1">*</span>}
+      </span>
       <div className="mt-2">
         {multiline ? (
-          <textarea name={name} rows={5} className={base} />
+          <textarea name={name} rows={5} className={base} required={required} />
         ) : (
-          <input name={name} type={type} className={base} />
+          <input name={name} type={type} className={base} required={required} />
         )}
       </div>
     </label>

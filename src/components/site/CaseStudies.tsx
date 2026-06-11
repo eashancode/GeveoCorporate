@@ -6,7 +6,7 @@ const studies = [
     title: "Doing Good Rewards",
     industry: "eCommerce / Loyalty / Social Impact",
     overview:
-      "A digital loyalty platform that connects shoppers, merchants and charities — converting shopping rewards into charitable donations.",
+      "A digital loyalty platform that connects shoppers, merchants and charities converting shopping rewards into charitable donations.",
     features: ["Loyalty rewards system", "Charity donation integration", "Merchant ecosystem", "Secure transactions"],
     impact: [
       { k: "$350K+", v: "Donated to charities" },

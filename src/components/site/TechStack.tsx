@@ -49,13 +49,7 @@ const groups = [
   },
 ];
 
-const capabilities = [
-  "Product engineering & MVP delivery",
-  "Scalable cloud-native architecture",
-  "AI integration & intelligent automation",
-  "Modern UI/UX & design systems",
-  "DevOps, CI/CD & platform reliability",
-];
+
 
 export function TechStack() {
   return (
@@ -80,18 +74,8 @@ export function TechStack() {
             </h2>
             <p className="mt-6 text-muted-foreground text-pretty max-w-md">
               Leveraging modern platforms, frameworks, and emerging technologies
-              to deliver scalable digital solutions — chosen for fit, not fashion.
+              to deliver scalable digital solutions chosen for fit, not fashion.
             </p>
-
-            {/* Capability bullets */}
-            <ul className="mt-7 space-y-2.5 max-w-md">
-              {capabilities.map((c) => (
-                <li key={c} className="flex items-start gap-3 text-sm text-foreground/85">
-                  <span className="mt-[7px] h-1.5 w-1.5 rounded-full bg-[#53ad6f] shrink-0" />
-                  {c}
-                </li>
-              ))}
-            </ul>
 
             <div className="mt-8 space-y-4">
               {groups.map((g) => (

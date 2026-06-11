@@ -12,6 +12,9 @@ import teamReview from "@/assets/team-review.jpg";
 import teamWhiteboard from "@/assets/team-whiteboard.jpg";
 import teamPair from "@/assets/team-pair.jpg";
 import teamOffice from "@/assets/team-office.jpg";
+import raviImg from "@/assets/ravi.png";
+import yudhishImg from "@/assets/yudhish.png";
+import hethuImg from "@/assets/hethu.png";
 
 const GALLERY: { src: string; alt: string; tag: string; span: string }[] = [
   { src: teamOffice, alt: "Geveo team celebration at the office", tag: "Team celebrations", span: "row-span-2" },
@@ -58,7 +61,7 @@ const STORY = [
   {
     n: "02",
     t: "Founded with purpose",
-    d: "Geveo was founded with the belief that successful digital transformation requires more than software development — it requires understanding business objectives, embracing innovation and delivering long-term value.",
+    d: "Geveo was founded with the belief that successful digital transformation requires more than software development it requires understanding business objectives, embracing innovation and delivering long-term value.",
   },
   {
     n: "03",
@@ -84,9 +87,27 @@ const VALUES = [
 ];
 
 const LEADERS = [
-  { name: "Ravi Weerasooriya", role: "CEO & Founder", initials: "RW" },
-  { name: "Yudhish Omprasadham", role: "General Manager — Sri Lanka", initials: "YO" },
-  { name: "Hethu Nanayakkara", role: "Head of Software Engineering", initials: "HN" },
+  {
+    name: "Ravi Weerasooriya",
+    role: "CEO & Founder",
+    initials: "RW",
+    img: raviImg,
+    linkedin: "https://www.linkedin.com/in/ravi-weerasooriya-8a31a02",
+  },
+  {
+    name: "Yudhish Omprasadham",
+    role: "General Manager",
+    initials: "YO",
+    img: yudhishImg,
+    linkedin: "https://www.linkedin.com/in/yudhish-omprasadham-2612a321b/",
+  },
+  {
+    name: "Hethu Nanayakkara",
+    role: "Head of Software Engineering",
+    initials: "HN",
+    img: hethuImg,
+    linkedin: "https://www.linkedin.com/in/hethu/?originalSubdomain=lk",
+  },
 ];
 
 const REGIONS = [
@@ -96,10 +117,10 @@ const REGIONS = [
 ];
 
 const METRICS = [
-  { k: "120+", v: "Projects Delivered" },
-  { k: "15+", v: "Industries Served" },
+  { k: "35+", v: "Projects Delivered" },
+  { k: "17+", v: "Industries Served" },
   { k: "40+", v: "Technologies Mastered" },
-  { k: "12+", v: "Countries Reached" },
+  { k: "50+", v: "Engineers" },
 ];
 
 function AboutPage() {
@@ -189,7 +210,7 @@ function AboutPage() {
                 </h2>
                 <p className="mt-6 text-muted-foreground text-pretty">
                   We believe technology is most valuable when it creates real
-                  outcomes — for people, for businesses and for the
+                  outcomes for people, for businesses and for the
                   communities they serve. That belief has shaped every team,
                   every product and every partnership we have built.
                 </p>
@@ -379,85 +400,6 @@ function AboutPage() {
           </div>
         </section>
 
-        {/* GREAT PLACE TO WORK SHOWCASE */}
-        <section className="py-24 md:py-28 bg-surface border-y border-border">
-          <div className="container-x">
-            <div
-              className="relative overflow-hidden rounded-3xl border border-border p-8 md:p-14"
-              style={{
-                background:
-                  "linear-gradient(135deg, rgba(83,173,111,0.12) 0%, rgba(255,255,255,1) 55%, rgba(56,140,220,0.10) 100%)",
-              }}
-            >
-              <div className="absolute -right-24 -top-24 h-80 w-80 rounded-full bg-primary/20 blur-3xl" />
-              <div className="absolute -left-24 -bottom-24 h-80 w-80 rounded-full bg-[#2f9bd6]/15 blur-3xl" />
-
-              <div className="relative grid lg:grid-cols-12 gap-10 items-center">
-                <div className="lg:col-span-5 flex justify-center lg:justify-start">
-                  <div className="relative">
-                    <div
-                      aria-hidden
-                      className="absolute inset-0 -m-6 rounded-full"
-                      style={{
-                        background:
-                          "radial-gradient(closest-side, color-mix(in oklab, var(--primary) 22%, transparent), transparent 70%)",
-                      }}
-                    />
-                    <img
-                      src={gptw}
-                      alt="Great Place To Work · Certified"
-                      className="relative h-48 md:h-56 w-auto drop-shadow-[0_10px_30px_rgba(83,173,111,0.25)] transition-transform duration-500 hover:scale-[1.03]"
-                    />
-                  </div>
-                </div>
-                <div className="lg:col-span-7">
-                  <div className="eyebrow inline-flex items-center gap-2">
-                    <Award className="h-3.5 w-3.5" /> Certified Workplace
-                  </div>
-                  <h2 className="mt-3 font-display text-3xl md:text-5xl tracking-[-0.02em] text-balance font-semibold">
-                    Proudly Certified Great Place To Work®
-                  </h2>
-                  <p className="mt-5 text-muted-foreground text-pretty max-w-xl">
-                    Recognized for fostering a culture of trust, innovation,
-                    collaboration, and employee growth.
-                  </p>
-                  <ul className="mt-6 grid sm:grid-cols-2 gap-3 max-w-xl">
-                    {[
-                      "Culture of trust & transparency",
-                      "Continuous learning & mentorship",
-                      "Inclusive, collaborative teams",
-                      "Wellbeing & work-life balance",
-                    ].map((x) => (
-                      <li key={x} className="flex items-start gap-2 text-sm text-foreground/85">
-                        <CheckCircle2 className="h-4 w-4 mt-0.5 text-primary shrink-0" />
-                        {x}
-                      </li>
-                    ))}
-                  </ul>
-                  <div className="mt-8 flex flex-wrap gap-3">
-                    <a
-                      href="https://jobs.geveo.com/"
-                      target="_blank"
-                      rel="noreferrer"
-                      className="group inline-flex items-center gap-2 rounded-full bg-primary text-primary-foreground pl-5 pr-2 py-2 text-sm font-medium shadow-green hover:brightness-105 transition-all"
-                    >
-                      Join our team
-                      <span className="grid h-7 w-7 place-items-center rounded-full bg-primary-foreground/15 group-hover:translate-x-0.5 transition-transform">
-                        →
-                      </span>
-                    </a>
-                    <a
-                      href="/#contact"
-                      className="inline-flex items-center gap-2 rounded-full border border-border bg-white/70 backdrop-blur px-5 py-2 text-sm font-medium hover:border-primary/40 transition-colors"
-                    >
-                      Partner with us
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
 
         {/* LEADERSHIP */}
         <section className="py-24 md:py-28 bg-surface border-y border-border">
@@ -465,11 +407,11 @@ function AboutPage() {
             <div className="max-w-2xl">
               <div className="eyebrow">Leadership</div>
               <h2 className="mt-3 font-display text-3xl md:text-5xl tracking-[-0.02em] text-balance">
-                Experienced. Engaged. Hands-on.
+                Experienced. Engaged. Handson.
               </h2>
               <p className="mt-5 text-muted-foreground text-pretty">
                 Our leadership team blends decades of engineering, product and
-                business experience — close to clients, close to the work.
+                business experience close to clients, close to the work.
               </p>
             </div>
 
@@ -486,79 +428,30 @@ function AboutPage() {
                     style={{ background: "linear-gradient(90deg, var(--primary), #2f9bd6)" }}
                   />
                   <div
-                    className="grid h-20 w-20 place-items-center rounded-2xl text-2xl font-display font-semibold text-primary"
+                    className="relative h-20 w-20 rounded-2xl overflow-hidden"
                     style={{
-                      background:
-                        "linear-gradient(135deg, color-mix(in oklab, var(--primary) 14%, white), color-mix(in oklab, var(--primary) 4%, white))",
-                      border: "1px solid color-mix(in oklab, var(--primary) 18%, transparent)",
+                      border: "1px solid color-mix(in oklab, var(--primary) 100%, transparent)",
                     }}
                   >
-                    {l.initials}
+                    <img src={l.img} alt={l.name} className="h-full w-full object-cover" />
+                    <div
+                      aria-hidden
+                      className="absolute inset-0"
+                    />
                   </div>
                   <h3 className="mt-6 font-display text-xl tracking-[-0.01em]">{l.name}</h3>
                   <div className="mt-1 text-sm text-muted-foreground">{l.role}</div>
-                  <div className="mt-6 inline-flex items-center gap-2 text-xs font-mono tracking-[0.18em] uppercase text-foreground/40 group-hover:text-primary transition-colors">
-                    <span className="h-px w-8 bg-current" /> Leadership
-                  </div>
+                  <a
+                    href={l.linkedin}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    className="mt-6 inline-flex items-center gap-2 text-xs font-mono tracking-[0.18em] uppercase text-foreground/40 hover:text-primary transition-colors"
+                  >
+                    LinkedIn
+                    <span aria-hidden="true">→</span>
+                  </a>
                 </div>
               ))}
-            </div>
-          </div>
-        </section>
-
-        {/* GLOBAL PRESENCE */}
-        <section className="py-24 md:py-28">
-          <div className="container-x">
-            <div className="grid lg:grid-cols-12 gap-12 items-center">
-              <div className="lg:col-span-5">
-                <div className="eyebrow inline-flex items-center gap-2">
-                  <Globe className="h-3.5 w-3.5" /> Global presence
-                </div>
-                <h2 className="mt-3 font-display text-3xl md:text-5xl tracking-[-0.02em] text-balance">
-                  Delivering solutions across regions.
-                </h2>
-                <p className="mt-5 text-muted-foreground text-pretty max-w-md">
-                  Engineered in Colombo. Trusted by enterprises across
-                  Australasia, Southeast Asia and beyond.
-                </p>
-              </div>
-
-              <div className="lg:col-span-7">
-                <div className="relative rounded-3xl border border-border bg-card p-6 md:p-8 overflow-hidden">
-                  <div
-                    aria-hidden
-                    className="absolute inset-0 opacity-[0.35]"
-                    style={{
-                      backgroundImage:
-                        "linear-gradient(to right, color-mix(in oklab, var(--foreground) 6%, transparent) 1px, transparent 1px), linear-gradient(to bottom, color-mix(in oklab, var(--foreground) 6%, transparent) 1px, transparent 1px)",
-                      backgroundSize: "40px 40px",
-                      maskImage:
-                        "radial-gradient(ellipse at center, black 50%, transparent 85%)",
-                    }}
-                  />
-                  <ul className="relative grid sm:grid-cols-3 gap-4">
-                    {REGIONS.map((r, i) => (
-                      <li
-                        key={r.c}
-                        className="group rounded-2xl border border-border bg-white/70 backdrop-blur p-5 card-hover step-in"
-                        style={{ animationDelay: `${i * 100}ms` }}
-                      >
-                        <div className="flex items-center gap-3">
-                          <span className="text-2xl">{r.flag}</span>
-                          <div>
-                            <div className="font-display text-lg tracking-[-0.01em]">{r.c}</div>
-                            <div className="text-xs text-muted-foreground">{r.city}</div>
-                          </div>
-                        </div>
-                        <div className="mt-5 inline-flex items-center gap-2 text-[11px] font-mono tracking-[0.18em] uppercase text-primary">
-                          <MapPin className="h-3 w-3" />
-                          Active region
-                        </div>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
             </div>
           </div>
         </section>

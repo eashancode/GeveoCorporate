@@ -12,7 +12,7 @@ const solutions = [
     tag: "01",
     title: "Specialised Engineering",
     desc:
-      "Deep technical work for emerging platforms — from the Evernode core to XRPL Hooks and decentralised application engineering.",
+      "Deep technical work for emerging platforms from the Evernode core to XRPL Hooks and decentralised application engineering.",
     points: ["Evernode platform", "XRPL Hooks", "DApp engineering", "Smart contracts"],
     Icon: Cpu,
   },
@@ -20,7 +20,7 @@ const solutions = [
     tag: "02",
     title: "Enterprise Software Engineering",
     desc:
-      "Mission-critical platforms designed, built and evolved alongside your business — engineered to last and to scale.",
+      "Mission-critical platforms designed, built and evolved alongside your business engineered to last and to scale.",
     points: ["Custom product builds", "Legacy modernisation", "API platforms", "Quality engineering"],
     Icon: Layers,
   },
@@ -71,7 +71,7 @@ export function Solutions() {
           </div>
           <p className="md:col-span-5 text-muted-foreground text-pretty">
             We work with leaders across industries to design and deliver
-            software that drives real business value — with the rigour of an
+            software that drives real business value with the rigour of an
             enterprise team and the agility of a modern product studio.
           </p>
         </div>

@@ -23,12 +23,27 @@ type Project = {
   Icon: React.ComponentType<{ className?: string; strokeWidth?: number }>;
   gradient: string;
   group: "featured" | "saas" | "ai";
+  href?: string;
 };
 
 const PROJECTS: Project[] = [
   // Featured Web3 / dApp
   {
-    slug: "medaivo", name: "MedAIvo",
+    slug: "zemlyai",
+    name: "ZemlyAI",
+    category: "AI Receptionist for Property Management",
+    categories: ["AI", "Web3"],
+    description: "AI receptionist built for Australian property managers—answers tenant and landlord calls 24/7, triages maintenance, and sends structured summaries to email or CRM.",
+    features: ["24/7 call answering", "Maintenance triage", "Agency-specific policies", "Call summaries to email/CRM"],
+    tags: ["AI", "Property Management", "Automation", "CRM"],
+    Icon: Globe,
+    gradient: "linear-gradient(135deg, rgba(56,140,220,0.14), rgba(255,255,255,1) 60%, rgba(83,173,111,0.10))",
+    href: "https://zemly.ai/",
+    group: "featured",
+  },
+  {
+    slug: "medaivo",
+    name: "MedAIvo",
     category: "AI + Healthcare + Web3",
     categories: ["AI", "Web3"],
     description: "AI-powered healthcare records and diagnostics platform anchored by on-chain verifiability for patient data integrity.",
@@ -36,10 +51,12 @@ const PROJECTS: Project[] = [
     tags: ["LLMs", "Solidity", "FHIR", "Next.js"],
     Icon: Activity,
     gradient: "linear-gradient(135deg, rgba(83,173,111,0.16), rgba(255,255,255,1) 60%, rgba(56,140,220,0.12))",
+    href: "https://medaivo.everpower.io/",
     group: "featured",
   },
   {
-    slug: "tracehub", name: "TraceHub",
+    slug: "tracehub",
+    name: "TraceHub",
     category: "Supply Chain & Blockchain",
     categories: ["Web3", "Enterprise"],
     description: "End-to-end supply chain traceability built on blockchain — verifiable provenance from origin to shelf.",
@@ -47,10 +64,12 @@ const PROJECTS: Project[] = [
     tags: ["EVM", "Hyperledger", "Node.js", "React"],
     Icon: Link2,
     gradient: "linear-gradient(135deg, rgba(56,140,220,0.14), rgba(255,255,255,1) 60%, rgba(83,173,111,0.10))",
+    href: "https://tracehub.everpower.io/",
     group: "featured",
   },
   {
-    slug: "tripq", name: "TripQ",
+    slug: "tripq",
+    name: "TripQ",
     category: "Travel & Hospitality Platform",
     categories: ["SaaS", "Mobile"],
     description: "Modern travel booking and itinerary management platform connecting travelers, agents and hospitality partners.",
@@ -58,10 +77,12 @@ const PROJECTS: Project[] = [
     tags: ["React Native", "Stripe", "AWS", "Postgres"],
     Icon: Plane,
     gradient: "linear-gradient(135deg, rgba(220,180,80,0.14), rgba(255,255,255,1) 60%, rgba(83,173,111,0.10))",
+    href: "https://tripq.everpower.io/",
     group: "featured",
   },
   {
-    slug: "roadrush", name: "RoadRush",
+    slug: "roadrush",
+    name: "RoadRush",
     category: "Transportation Ecosystem",
     categories: ["SaaS", "Mobile"],
     description: "Connected ecosystem for ride operators, drivers and riders with real-time dispatch, telemetry and analytics.",
@@ -72,7 +93,8 @@ const PROJECTS: Project[] = [
     group: "featured",
   },
   {
-    slug: "evercred", name: "EverCred",
+    slug: "evercred",
+    name: "EverCred",
     category: "DeFi & Lending Platform",
     categories: ["Web3"],
     description: "Decentralized lending protocol with risk-adjusted yield, on-chain credit scoring and institutional-grade controls.",
@@ -80,6 +102,20 @@ const PROJECTS: Project[] = [
     tags: ["Solidity", "Ethers", "The Graph", "React"],
     Icon: Coins,
     gradient: "linear-gradient(135deg, rgba(56,140,220,0.14), rgba(255,255,255,1) 60%, rgba(83,173,111,0.10))",
+    href: "https://evercred.everpower.io/",
+    group: "featured",
+  },
+  {
+    slug: "everpower-studio",
+    name: "Everpower Studio",
+    category: "Product Studio",
+    categories: ["Web3", "AI"],
+    description: "Studio platform for building digital products, AI tools and blockchain experiences with a focus on enterprise adoption.",
+    features: ["Product design", "AI tooling", "Blockchain integration", "Launch support"],
+    tags: ["Studio", "AI", "Web3"],
+    Icon: Layers,
+    gradient: "linear-gradient(135deg, rgba(220,180,80,0.14), rgba(255,255,255,1) 60%, rgba(83,173,111,0.10))",
+    href: "https://everpowerstudio.com/",
     group: "featured",
   },
 
@@ -302,54 +338,74 @@ function SectionHead({ eyebrow, title, desc }: { eyebrow: string; title: string;
 
 function FeaturedCard({ project, large }: { project: Project; large?: boolean }) {
   const Icon = project.Icon;
+  const cardClassName = `group relative overflow-hidden rounded-3xl border border-border card-hover ${large ? "lg:col-span-2" : ""}`;
+  const cardContent = (
+    <div className="relative grid md:grid-cols-12 gap-6 p-8 md:p-10">
+      <div className="md:col-span-7">
+        <div className="inline-flex items-center gap-2 rounded-full bg-white/80 border border-primary/30 px-3 py-1 font-mono text-[10px] tracking-[0.18em] uppercase text-primary">
+          <span className="h-1.5 w-1.5 rounded-full bg-primary pulse-dot" />
+          {project.category}
+        </div>
+        <h3 className="mt-4 font-display text-3xl md:text-4xl tracking-[-0.02em]">{project.name}</h3>
+        <p className="mt-3 text-muted-foreground text-pretty max-w-xl">{project.description}</p>
+        <ul className="mt-5 grid sm:grid-cols-2 gap-2">
+          {project.features.map((f) => (
+            <li key={f} className="flex items-center gap-2 text-sm">
+              <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+              {f}
+            </li>
+          ))}
+        </ul>
+        <div className="mt-5 flex flex-wrap gap-2">
+          {project.tags.map((t) => (
+            <span key={t} className="rounded-full border border-primary/30 bg-white/70 px-2.5 py-1 text-[11px] text-primary font-medium">{t}</span>
+          ))}
+        </div>
+        <div className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-foreground">
+          {project.href ? "View product" : "View Case Study"}
+          <ArrowRight className="h-4 w-4 text-primary transition-transform group-hover:translate-x-1" />
+        </div>
+      </div>
+      <div className="md:col-span-5">
+        <div className="relative h-full min-h-[200px] rounded-2xl border border-border bg-white shadow-elev overflow-hidden p-6 flex items-center justify-center">
+          <div className="absolute inset-0 opacity-40" style={{
+            background: "radial-gradient(circle at 30% 30%, rgba(83,173,111,0.18), transparent 60%), radial-gradient(circle at 70% 70%, rgba(56,140,220,0.18), transparent 60%)",
+          }} />
+          <div className="relative h-24 w-24 rounded-2xl bg-gradient-to-br from-primary/15 to-[#2f9bd6]/15 border border-primary/30 grid place-items-center transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-6">
+            <Icon className="h-10 w-10 text-primary" strokeWidth={1.6} />
+          </div>
+          <ArrowUpRight className="absolute right-4 top-4 h-5 w-5 text-primary transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+        </div>
+      </div>
+    </div>
+  );
+
+  if (project.href) {
+    return (
+      <a
+        href={project.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={cardClassName}
+        style={{ background: project.gradient }}
+      >
+        <div className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-primary/10 blur-3xl opacity-70 group-hover:opacity-100 transition" />
+        <div className="absolute inset-0 blueprint-bg opacity-25 [mask-image:radial-gradient(circle_at_top_right,black_30%,transparent_70%)]" />
+        {cardContent}
+      </a>
+    );
+  }
+
   return (
     <Link
       to="/case-studies/$slug"
       params={{ slug: project.slug }}
-      className={`group relative overflow-hidden rounded-3xl border border-border card-hover ${large ? "lg:col-span-2" : ""}`}
+      className={cardClassName}
       style={{ background: project.gradient }}
     >
       <div className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-primary/10 blur-3xl opacity-70 group-hover:opacity-100 transition" />
       <div className="absolute inset-0 blueprint-bg opacity-25 [mask-image:radial-gradient(circle_at_top_right,black_30%,transparent_70%)]" />
-
-      <div className="relative grid md:grid-cols-12 gap-6 p-8 md:p-10">
-        <div className="md:col-span-7">
-          <div className="inline-flex items-center gap-2 rounded-full bg-white/80 border border-primary/30 px-3 py-1 font-mono text-[10px] tracking-[0.18em] uppercase text-primary">
-            <span className="h-1.5 w-1.5 rounded-full bg-primary pulse-dot" />
-            {project.category}
-          </div>
-          <h3 className="mt-4 font-display text-3xl md:text-4xl tracking-[-0.02em]">{project.name}</h3>
-          <p className="mt-3 text-muted-foreground text-pretty max-w-xl">{project.description}</p>
-          <ul className="mt-5 grid sm:grid-cols-2 gap-2">
-            {project.features.map((f) => (
-              <li key={f} className="flex items-center gap-2 text-sm">
-                <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-                {f}
-              </li>
-            ))}
-          </ul>
-          <div className="mt-5 flex flex-wrap gap-2">
-            {project.tags.map((t) => (
-              <span key={t} className="rounded-full border border-primary/30 bg-white/70 px-2.5 py-1 text-[11px] text-primary font-medium">{t}</span>
-            ))}
-          </div>
-          <div className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-foreground">
-            View Case Study
-            <ArrowRight className="h-4 w-4 text-primary transition-transform group-hover:translate-x-1" />
-          </div>
-        </div>
-        <div className="md:col-span-5">
-          <div className="relative h-full min-h-[200px] rounded-2xl border border-border bg-white shadow-elev overflow-hidden p-6 flex items-center justify-center">
-            <div className="absolute inset-0 opacity-40" style={{
-              background: "radial-gradient(circle at 30% 30%, rgba(83,173,111,0.18), transparent 60%), radial-gradient(circle at 70% 70%, rgba(56,140,220,0.18), transparent 60%)",
-            }} />
-            <div className="relative h-24 w-24 rounded-2xl bg-gradient-to-br from-primary/15 to-[#2f9bd6]/15 border border-primary/30 grid place-items-center transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-6">
-              <Icon className="h-10 w-10 text-primary" strokeWidth={1.6} />
-            </div>
-            <ArrowUpRight className="absolute right-4 top-4 h-5 w-5 text-primary transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
-          </div>
-        </div>
-      </div>
+      {cardContent}
     </Link>
   );
 }
